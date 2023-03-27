@@ -4,7 +4,10 @@ export default {
     props: {
         img: String,
         name: String,
-        type: String
+        type: {
+            default: 'Generic',
+            type: String
+        }
     }
 }
 </script>
@@ -20,4 +23,8 @@ export default {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+* {
+    text-align: center;
+}
+</style>
