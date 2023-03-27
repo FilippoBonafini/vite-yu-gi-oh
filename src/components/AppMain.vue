@@ -15,8 +15,10 @@ export default {
 <template>
     <main>
         <div class="container">
-            <Filter />
-            <FoundedCard />
+            <div class="info">
+                <Filter />
+                <FoundedCard />
+            </div>
             <CardList />
         </div>
     </main>
@@ -25,11 +27,17 @@ export default {
 
 <style lang="scss" scoped>
 main {
-    background-color: rgb(232, 232, 232);
 
     .container {
         max-width: 1500px;
         margin: auto;
+
+        .info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
     }
 }
 </style>

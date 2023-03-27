@@ -3,6 +3,7 @@
 // IMPORTIAMO COMPONENTI 
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
+import Loading from './components/Loading.vue';
 // IMPORTIAMO AXIOS 
 import axios from 'axios';
 // IMPORTIAMO LO STORE 
@@ -13,19 +14,35 @@ export default {
   // DICHIARIAMO I COMPONENTI 
   components: {
     AppHeader,
-    AppMain
+    AppMain,
+    Loading
   },
   data() {
     return {
-      store
+      store,
+      loadPoint: 20,
+      loadPageStatus: true,
+      LoadmoreContentStatus: false
+    }
+  },
+  methods: {
+    loadMore() {
+      this.loadPoint += 20
+      this.call()
+      this.LoadmoreContentStatus = true
+    },
+    call() {
+      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+        .then((response) => {
+          this.store.cards = response.data.data;
+          this.store.cards.length = this.loadPoint
+          this.loadPageStatus = false
+          this.LoadmoreContentStatus = false
+        })
     }
   },
   created() {
-    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
-      .then((response) => {
-        console.log(response.data.data)
-        this.store.cards = response.data.data;
-      })
+    this.call()
   }
 }
 </script>
@@ -33,8 +50,40 @@ export default {
 <!-- HTML -->
 <template>
   <AppHeader />
-  <AppMain />
+  <div v-if="loadPageStatus === false">
+    <AppMain />
+    <div class="button" @click="loadMore()" v-if="LoadmoreContentStatus === false">
+      <div>LOAD MORE</div>
+    </div>
+    <div v-else>
+      <Loading />
+    </div>
+  </div>
+  <div v-else>
+    <Loading />
+  </div>
 </template>
 
 <!-- CSS  -->
-<style lang="scss"></style>
+<style lang="scss">
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+
+  div {
+    background-color: rgb(54, 54, 54);
+    color: white;
+    padding: 20px 30px;
+    font-size: 34px;
+    font-weight: bolder;
+    border-radius: 50px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(31, 31, 31);
+    }
+  }
+}
+</style>

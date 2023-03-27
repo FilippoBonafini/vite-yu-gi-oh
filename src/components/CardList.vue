@@ -8,8 +8,7 @@ export default {
     },
     data() {
         return {
-            store,
-
+            store
         }
     }
 }
@@ -20,7 +19,6 @@ export default {
         <div class="cardElement" v-for="card in store.cards">
             <Card :img="card.card_images[0].image_url" :name="card.name" :type="card.type" />
         </div>
-
     </div>
 </template>
 
