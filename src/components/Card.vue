@@ -1,12 +1,21 @@
 <script>
 export default {
     name: 'Card',
+    props: {
+        img: String,
+        name: String,
+        type: String
+    }
 }
 </script>
 
 <template>
     <div class="card">
-        card
+        <div class="image">
+            <img :src="img" :alt="name">
+        </div>
+        <div class="title">{{ name }}</div>
+        <div class="type">{{ type }}</div>
     </div>
 </template>
 

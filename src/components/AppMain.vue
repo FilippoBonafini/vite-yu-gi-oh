@@ -14,11 +14,22 @@ export default {
 
 <template>
     <main>
-        <Filter />
-        <FoundedCard />
-        <CardList />
+        <div class="container">
+            <Filter />
+            <FoundedCard />
+            <CardList />
+        </div>
     </main>
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+main {
+    background-color: rgb(232, 232, 232);
+
+    .container {
+        max-width: 1500px;
+        margin: auto;
+    }
+}
+</style>
