@@ -4,6 +4,7 @@
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import Loading from './components/Loading.vue';
+import LoadMoreButton from './components/LoadMoreButton.vue';
 // IMPORTIAMO AXIOS 
 import axios from 'axios';
 // IMPORTIAMO LO STORE 
@@ -15,7 +16,8 @@ export default {
   components: {
     AppHeader,
     AppMain,
-    Loading
+    Loading,
+    LoadMoreButton
   },
   data() {
     return {
@@ -53,8 +55,8 @@ export default {
   <AppHeader />
   <div v-if="loadPageStatus === false">
     <AppMain />
-    <div class="button" @click="loadMore()" v-if="LoadmoreContentStatus === false">
-      <div>LOAD MORE</div>
+    <div @click="loadMore()" v-if="LoadmoreContentStatus === false">
+      <LoadMoreButton />
     </div>
     <div v-else>
       <Loading />
@@ -66,24 +68,4 @@ export default {
 </template>
 
 <!-- CSS  -->
-<style lang="scss">
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  div {
-    background-color: rgb(54, 54, 54);
-    color: white;
-    padding: 20px 30px;
-    font-size: 34px;
-    font-weight: bolder;
-    border-radius: 50px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: rgb(31, 31, 31);
-    }
-  }
-}
-</style>
+<style lang="scss"></style>
