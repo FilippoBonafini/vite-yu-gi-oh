@@ -17,7 +17,7 @@ export default {
 <template>
     <div class="cardList">
         <div class="cardElement" v-for="card in store.cards">
-            <Card :img="card.card_images[0].image_url" :name="card.name" :type="card.type" />
+            <Card :img="card.card_images[0].image_url" :name="card.name" :type="card.archetype" />
         </div>
     </div>
 </template>
