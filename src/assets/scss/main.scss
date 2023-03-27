@@ -1,0 +1,6 @@
+@use './_partial/reset' as *;
+@use './_partial/variables' as *;
+
+body {
+    font-family: $primary-font;
+}
