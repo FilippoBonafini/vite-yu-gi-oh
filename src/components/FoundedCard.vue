@@ -11,8 +11,13 @@ export default {
 </script>
 
 <template>
-    <span class="container">Cards Founded: {{ store.cards.length }}</span>
+    <span class="container">Cards Founded: {{ store.lengthSearch }}</span>
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+span {
+    font-size: 26px;
+    color: white;
+}
+</style>

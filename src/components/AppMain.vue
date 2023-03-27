@@ -16,8 +16,14 @@ export default {
     <main>
         <div class="container">
             <div class="info">
-                <Filter />
-                <FoundedCard />
+                <div>
+                    <Filter />
+                </div>
+
+                <div>
+                    <FoundedCard />
+                </div>
+
             </div>
             <CardList />
         </div>

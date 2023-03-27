@@ -35,6 +35,7 @@ export default {
       axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
         .then((response) => {
           this.store.cards = response.data.data;
+          this.store.lengthSearch = this.store.cards.length
           this.store.cards.length = this.loadPoint
           this.loadPageStatus = false
           this.LoadmoreContentStatus = false
@@ -70,7 +71,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
 
   div {
     background-color: rgb(54, 54, 54);
