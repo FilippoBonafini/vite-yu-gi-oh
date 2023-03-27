@@ -1,9 +1,11 @@
 <script>
 import FoundedCard from './FoundedCard.vue';
 import CardList from './CardList.vue';
+import Filter from './Filter.vue';
 export default {
     name: 'Main',
     components: {
+        Filter,
         FoundedCard,
         CardList
     }
@@ -12,6 +14,7 @@ export default {
 
 <template>
     <main>
+        <Filter />
         <FoundedCard />
         <CardList />
     </main>

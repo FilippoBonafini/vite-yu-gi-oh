@@ -9,7 +9,9 @@ export default {
 </script>
 
 <template>
-    <Card />
+    <div class="cardList">
+        <Card />
+    </div>
 </template>
 
 
