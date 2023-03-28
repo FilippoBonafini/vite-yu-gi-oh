@@ -1,15 +1,22 @@
 <script>
+import { store } from '../store';
 export default {
     name: 'Filter',
+    data() {
+        return {
+            store
+        }
+    }
 }
 </script>
 
 <template>
     <div class="filter">
         <label for="types">Seleziona tipo</label>
-        <input list="typesList" name="types" id="types">
+        <input list="typesList" name="types" id="types" v-model="store.searchKey">
         <datalist id="typesList">
-            <option value="Alien"></option>
+            <option value="">Select Archetipe</option>
+            <option v-for="archetipe in store.archetipe">{{ archetipe.archetype_name }}</option>
         </datalist>
     </div>
 </template>

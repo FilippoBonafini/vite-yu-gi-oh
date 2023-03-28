@@ -33,8 +33,8 @@ export default {
       this.call()
       this.LoadmoreContentStatus = true
     },
-    call() {
-      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+    callCards() {
+      axios.get(this.store.apiCards)
         .then((response) => {
           this.store.cards = response.data.data;
           this.store.lengthSearch = this.store.cards.length
@@ -42,10 +42,18 @@ export default {
           this.loadPageStatus = false
           this.LoadmoreContentStatus = false
         })
+    },
+    callArchetipe() {
+      axios.get(this.store.apiArchetipe)
+        .then((response) => {
+          this.store.archetipe = response.data
+          console.log(this.store.archetipe)
+        })
     }
   },
   created() {
-    this.call()
+    this.callCards()
+    this.callArchetipe()
   }
 }
 </script>
