@@ -47,7 +47,6 @@ export default {
     }
 
     input {
-        width: 300px;
         height: 50px;
         font-size: 30px;
         text-align: center;
