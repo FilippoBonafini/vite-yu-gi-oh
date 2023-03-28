@@ -12,8 +12,11 @@ export default {
 
 <template>
     <div class="filter">
-        <label for="types">Seleziona tipo</label>
-        <input list="typesList" name="types" id="types" v-model="store.searchKey">
+        <div class="archetype">
+            <label for="types">archetype:</label>
+            <input list="typesList" name="types" id="types" v-model="store.searchKey">
+        </div>
+
         <datalist id="typesList">
             <option v-for="archetipe in store.archetipe">{{ archetipe.archetype_name }}</option>
         </datalist>
@@ -27,9 +30,20 @@ export default {
     width: 300px;
     padding: 30px 0;
     display: flex;
+    align-items: center;
 
-    label {
-        display: none;
+
+    .archetype {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        label {
+            color: white;
+            font-size: 23px;
+        }
     }
 
     input {
@@ -42,15 +56,13 @@ export default {
     }
 
     .button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        font-weight: bolder;
-        border-radius: 100px;
-        margin-left: 20px;
+
+        font-size: 23px;
         background-color: white;
-        padding: 10px;
+        margin-left: 30px;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: bolder;
 
         &:hover {
             cursor: pointer;
