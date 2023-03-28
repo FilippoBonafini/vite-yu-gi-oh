@@ -17,7 +17,7 @@ export default {
         <div class="container">
             <div class="info">
                 <div>
-                    <Filter />
+                    <Filter @search="$emit('search')" />
                 </div>
 
                 <div>

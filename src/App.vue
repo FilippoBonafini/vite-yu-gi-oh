@@ -37,13 +37,19 @@ export default {
     callCards() {
       axios.get(this.store.apiCards, {
         params: {
-          archetype: 'A.I.'
+          archetype: store.searchKey
         }
       })
         .then((response) => {
+          this.loadPageStatus = true
           this.store.cards = response.data.data;
           this.store.lengthSearch = this.store.cards.length
-          this.store.cards.length = this.loadPoint
+          if (this.store.cards.length >= this.loadPoint) {
+            this.store.cards.length = this.loadPoint
+            this.loadButton = true
+          } else {
+            this.loadButton = false
+          }
           this.loadPageStatus = false
           this.LoadmoreContentStatus = false
         })
@@ -75,7 +81,7 @@ export default {
 <template>
   <AppHeader />
   <div v-if="loadPageStatus === false">
-    <AppMain />
+    <AppMain @search="callCards()" />
     <div @click="loadMore()" v-if="LoadmoreContentStatus === false" v-show="loadButton">
       <LoadMoreButton />
     </div>
