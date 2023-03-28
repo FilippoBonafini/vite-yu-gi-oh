@@ -37,7 +37,7 @@ export default {
     callCards() {
       axios.get(this.store.apiCards, {
         params: {
-          archetype: ''
+          archetype: 'A.I.'
         }
       })
         .then((response) => {
