@@ -24,17 +24,22 @@ export default {
       store,
       loadPoint: 20,
       loadPageStatus: true,
-      LoadmoreContentStatus: false
+      LoadmoreContentStatus: false,
+      loadButton: true
     }
   },
   methods: {
     loadMore() {
       this.loadPoint += 20
-      this.call()
+      this.callCards()
       this.LoadmoreContentStatus = true
     },
     callCards() {
-      axios.get(this.store.apiCards)
+      axios.get(this.store.apiCards, {
+        params: {
+          archetype: ''
+        }
+      })
         .then((response) => {
           this.store.cards = response.data.data;
           this.store.lengthSearch = this.store.cards.length
@@ -42,6 +47,14 @@ export default {
           this.loadPageStatus = false
           this.LoadmoreContentStatus = false
         })
+        .catch((error) => {
+          console.log(error)
+          this.store.characters = []
+          this.store.charactersFound = 0
+          this.loadPageStatus = false
+          this.loadButton = false
+        }
+        )
     },
     callArchetipe() {
       axios.get(this.store.apiArchetipe)
@@ -63,7 +76,7 @@ export default {
   <AppHeader />
   <div v-if="loadPageStatus === false">
     <AppMain />
-    <div @click="loadMore()" v-if="LoadmoreContentStatus === false">
+    <div @click="loadMore()" v-if="LoadmoreContentStatus === false" v-show="loadButton">
       <LoadMoreButton />
     </div>
     <div v-else>
