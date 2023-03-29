@@ -32,16 +32,17 @@ export default {
     loadMore() {
       this.loadPoint += 20
       this.callCards()
-      this.LoadmoreContentStatus = true
     },
     callCards() {
+      if (this.store.searchKey === '') {
+        this.store.searchKey = null
+      }
       axios.get(this.store.apiCards, {
         params: {
           archetype: store.searchKey
         }
       })
         .then((response) => {
-          this.loadPageStatus = true
           this.store.cards = response.data.data;
           this.store.lengthSearch = this.store.cards.length
           if (this.store.cards.length >= this.loadPoint) {
@@ -55,8 +56,8 @@ export default {
         })
         .catch((error) => {
           console.log(error)
-          this.store.characters = []
-          this.store.charactersFound = 0
+          this.store.cards = []
+          this.store.lengthSearch = 0
           this.loadPageStatus = false
           this.loadButton = false
         }
